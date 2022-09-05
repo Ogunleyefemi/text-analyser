@@ -1,8 +1,12 @@
 // Business Logic
+function noInputtedWord(word,text){
+  ((text.trim().length === 0) || (word.trim().length === 0))
+  }
 
+  // word counter
 function wordCounter(text) {
     if (text.trim().length === 0) {
-      return 0;
+      
     }
     let wordCount = 0;
     const wordArray = text.split(" ");
@@ -13,9 +17,9 @@ function wordCounter(text) {
     });
     return wordCount;
   }
-  
+  // number of occurences
   function numberOfOccurrencesInText(word, text) {
-    if ((text.trim().length === 0) || (word.trim().length === 0)){
+    if (noInputtedWord(word,text)) {
       return 0;
     }
     const wordArray = text.split(" ");
@@ -48,11 +52,12 @@ function boldPassage(word, text) {
 $(document).ready(function(){
     $("form#word-counter").submit(function(event){
       event.preventDefault();
-      const passage = $("#text-passage").val();
+      const text = $("#text-passage").val();
       const word = $("#word").val();
-      const wordCount = wordCounter(passage);
-      const occurrencesOfWord = numberOfOccurrencesInText(word, passage);
+      const wordCount = wordCounter(text);
+      const occurrencesOfWord = numberOfOccurrencesInText(word, text);
       $("#total-count").html(wordCount);
       $("#selected-count").html(occurrencesOfWord);
+      $("#bolded-passage").html(boldPassage(word, text));
     });
   });
