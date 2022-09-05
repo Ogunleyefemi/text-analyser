@@ -1,6 +1,7 @@
 // Business Logic
 function noInputtedWord(word,text){
-  ((text.trim().length === 0) || (word.trim().length === 0))
+  ((word.trim().length === 0) || (text.trim().length === 0))
+  return 0;
   }
 
   // word counter
@@ -33,10 +34,13 @@ function wordCounter(text) {
   }
 //   function to bold text
 function boldPassage(word, text) {
+  if(noInputtedWord(word,text)){
+    return ""
+  }
     let htmlString = "<p>";
     let textArray = text.split(" ");
     textArray.forEach(function(element, index) {
-      if (word === element) {
+      if (element.toLowerCase().includes(word.toLowerCase()))  {
         htmlString = htmlString.concat("<b>" + element + "</b>");
       } else {
         htmlString = htmlString.concat(element);
